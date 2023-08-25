@@ -1,12 +1,16 @@
 from django import forms
-from django.contrib.auth.forms import UserCreationForm
-from .models import User
+from django.contrib.auth.forms import AuthenticationForm
+from .models import CustomUser
 
 
-class SignupForm(UserCreationForm):
-
-    email = forms.EmailField(max_length=32, help_text='Required')
+class SignUpForm(forms.ModelForm):
+    password = forms.CharField(widget=forms.PasswordInput)
 
     class Meta:
-        model = User
-        fields = ['username', 'email', 'phone', 'password']
+        model = CustomUser
+        fields = ('username', 'full_name', 'email', 'password')
+
+
+class LoginForm(AuthenticationForm):
+    # You don't need to define anything here since AuthenticationForm covers it.
+    pass
