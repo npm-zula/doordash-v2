@@ -14,19 +14,10 @@ from .models import CustomUser
 
 
 class LoginForm(AuthenticationForm):
-    # email = forms.EmailField()
-    # password = forms.CharField(widget=forms.PasswordInput)
-    # email = forms.EmailField(label='Email')
-
-    # class Meta:
-    #     model = CustomUser
-    #     # fields = ('email', 'password')
     pass
 
 
 class RegistrationForm(UserCreationForm):
-    # password = forms.CharField(label='Password', widget=forms.PasswordInput)
-    # email = forms.EmailField(label='Email')
 
     class Meta:
         model = CustomUser
