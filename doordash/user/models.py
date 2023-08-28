@@ -21,6 +21,7 @@ class CartItem(models.Model):
                              blank=True, null=True)  # For authenticated users
     item = models.ForeignKey(Item, on_delete=models.CASCADE)
     quantity = models.PositiveIntegerField(default=1)
+    price = models.DecimalField(max_digits=6, decimal_places=2, default=0.00)
 
     def __str__(self):
         return f"{self.item.name} ({self.quantity})"

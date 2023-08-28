@@ -67,6 +67,7 @@ def add_to_cart(request, item_id):
 
     if not created:
         cart_item.quantity += 1
+        cart_item.price = cart_item.item.price * cart_item.quantity
         cart_item.save()
 
     return redirect('home')
@@ -74,7 +75,7 @@ def add_to_cart(request, item_id):
 # create a view to display the cart
 
 
-@login_required
 def cart(request):
     cart_items = CartItem.objects.filter(user=request.user)
+
     return render(request, 'doordash_app/cart.html', {'cart_items': cart_items})

@@ -5,8 +5,9 @@
 
   {% for Item in cart_items %}
   <li class="flex">
-    <p class="text-bg-dark">{{ Item.name }} - {{ Item.description }}</p>
-    <p>Quantity - {{Item.Quantity}}</p>
+    {{ Item.item.name }} - {{ Item.item.description }}
+    <span class="m-lg-4">Quantity - {{Item.quantity}}</span>
+    <span class="m-lg-4">Price - {{Item.price}} </span>
   </li>
   {% endfor %}
 </div>
