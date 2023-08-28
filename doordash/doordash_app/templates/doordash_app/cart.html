@@ -1,0 +1,14 @@
+{% extends "./layout/base.html" %} {% block content %}
+
+<div class="mt-5">
+  <h2>Cart Items</h2>
+
+  {% for Item in cart_items %}
+  <li class="flex">
+    <p class="text-bg-dark">{{ Item.name }} - {{ Item.description }}</p>
+    <p>Quantity - {{Item.Quantity}}</p>
+  </li>
+  {% endfor %}
+</div>
+
+{% endblock content %}
