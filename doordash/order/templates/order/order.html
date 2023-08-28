@@ -1,19 +1,13 @@
 {% extends "./layout/base.html" %} {% block content %}
 
 <div class="mt-5">
-  <h2>Cart Items</h2>
+  <h2>Your Order</h2>
 
   {% for Item in cart_items %}
-  <li class="flex mt-3">
+  <li class="flex">
     {{ Item.item.name }} - {{ Item.item.description }}
     <span class="m-lg-4">Quantity - {{Item.quantity}}</span>
     <span class="m-lg-4">Price - {{Item.price}} </span>
   </li>
-  {% endfor %}
-
-  <a href="{% url 'order:place_order' %}" class="btn btn-dark mt-5"
-    >Place Order</a
-  >
+  {% endfor %} {% endblock content %}
 </div>
-
-{% endblock content %}

@@ -41,6 +41,7 @@ INSTALLED_APPS = [
     'user',
     'doordash_app',
     'restaurant',
+    'order',
     'crispy_forms',
 
 ]
