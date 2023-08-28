@@ -1,19 +1,18 @@
-<!DOCTYPE html>
-<html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Document</title>
-  </head>
-  <body>
-    <h1>HOME PAGE DOORDASH APP</h1>
-    {% if user.is_authenticated %}
-    <h1>Hi {{ user.username }}</h1>
-    <p><a href="{% url 'logout' %}">Logout</a></p>
-    {% else %}
-    <h1>Hi Guest</h1>
-    <p><a href="{% url 'login' %}">Login</a></p>
+{% extends "./layout/base.html" %} {% block content %}
 
-    {% endif %}
-  </body>
-</html>
+<div class="mt-5">
+  <h1>HOME PAGE DOORDASH APP</h1>
+  {% if user.is_authenticated %}
+  <h1>Hi {{ user.username }}</h1>
+  {% else %}
+  <h1>Hi Guest</h1>
+  {% endif %}
+
+  <h2>Featured Restaurants</h2>
+  <ul>
+    {% for restaurant in featured_restaurants %}
+    <li>{{ restaurant.name }} - {{ restaurant.description }}</li>
+    {% endfor %}
+  </ul>
+</div>
+{% endblock content %}

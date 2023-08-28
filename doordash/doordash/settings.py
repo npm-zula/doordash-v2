@@ -40,6 +40,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'user',
     'doordash_app',
+    'restaurant',
     'crispy_forms',
 
 ]

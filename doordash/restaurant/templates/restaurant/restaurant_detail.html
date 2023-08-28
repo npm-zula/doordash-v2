@@ -1,0 +1,17 @@
+{% extends 'base.html' %} {% block content %}
+<h2>Restaurant List</h2>
+<ul>
+  {% for restaurant in restaurants %}
+  <li>
+    <h3>{{ restaurant.name }}</h3>
+    <p>{{ restaurant.description }}</p>
+    <p>{{ restaurant.address }}</p>
+    <ul>
+      {% for item in restaurant.item_set.all %}
+      <li>{{ item.name }} - ${{ item.price }}</li>
+      {% endfor %}
+    </ul>
+  </li>
+  {% endfor %}
+</ul>
+{% endblock %}
