@@ -8,10 +8,29 @@
   <h1>Hi Guest</h1>
   {% endif %}
 
-  <h2>Featured Restaurants</h2>
+  <h2 class="mt-5">Featured Restaurants</h2>
   <ul>
     {% for restaurant in featured_restaurants %}
-    <li>{{ restaurant.name }} - {{ restaurant.description }}</li>
+    <li>
+      <a
+        class="nav-link"
+        href="{% url 'restaurant:restaurant_detail' restaurant.id %}"
+      >
+        {{ restaurant.name }} - {{ restaurant.description }}
+      </a>
+    </li>
+    {% endfor %}
+  </ul>
+
+  <h2 class="mt-5">Featured Items</h2>
+  <ul>
+    {% for Item in featured_Items %}
+    <li class="flex">
+      <a class="nav-link" href="{% url 'logout' %}">
+        {{ Item.name }} - {{ Item.description }}
+      </a>
+      <p class="text-success">Add to Cart</p>
+    </li>
     {% endfor %}
   </ul>
 </div>
