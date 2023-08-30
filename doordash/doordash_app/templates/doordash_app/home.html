@@ -26,10 +26,12 @@
   <ul>
     {% for Item in featured_Items %}
     <li class="flex">
-      <a class="nav-link" href="{% url 'logout' %}">
-        {{ Item.name }} - {{ Item.description }}
+      <a class="nav-link" href="">
+        {{ Item.name }} - {{ Item.description }} - Rs.{{ Item.price }}
       </a>
-      <p class="text-success">Add to Cart</p>
+      <a class="text-success" href="{% url 'users:add_to_cart' Item.id %}"
+        >Add to Cart</a
+      >
     </li>
     {% endfor %}
   </ul>

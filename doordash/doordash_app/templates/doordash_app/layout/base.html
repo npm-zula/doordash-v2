@@ -16,30 +16,27 @@
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
       <div class="container">
         <a class="navbar-brand" href="{% url 'home' %}">Home</a>
-        <button
-          class="navbar-toggler"
-          type="button"
-          data-bs-toggle="collapse"
-          data-bs-target="#navbarNav"
-          aria-controls="navbarNav"
-          aria-expanded="false"
-          aria-label="Toggle navigation"
-        >
-          <span class="navbar-toggler-icon"></span>
-        </button>
         <div class="collapse navbar-collapse" id="navbarNav">
           <ul class="navbar-nav ml-auto">
             <!--  -->
             {% if user.is_authenticated %}
             <li class="nav-item">
-              <a class="nav-link" href="{% url 'logout' %}">Logout</a>
+              <a class="nav-link" href="{% url 'users:logout' %}">Logout</a>
             </li>
-            {% if not user.is_superuser %} {% endif %} {% else %}
+
+            <!-- show a cart link if user is not a superuser -->
+            {% if not user.is_superuser %}
+
             <li class="nav-item">
-              <a class="nav-link" href="{% url 'login' %}">Login</a>
+              <a class="nav-link" href="{% url 'users:cart' %}">Cart</a>
+              {% endif %} {% else %}
+            </li>
+
+            <li class="nav-item">
+              <a class="nav-link" href="{% url 'users:login' %}">Login</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="{% url 'signup' %}">Signup</a>
+              <a class="nav-link" href="{% url 'users:signup' %}">Signup</a>
             </li>
             {% endif %}
           </ul>
