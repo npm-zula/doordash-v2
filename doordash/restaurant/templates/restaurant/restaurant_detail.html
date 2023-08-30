@@ -1,17 +1,16 @@
-{% extends 'base.html' %} {% block content %}
-<h2>Restaurant List</h2>
-<ul>
-  {% for restaurant in restaurants %}
-  <li>
-    <h3>{{ restaurant.name }}</h3>
-    <p>{{ restaurant.description }}</p>
-    <p>{{ restaurant.address }}</p>
-    <ul>
-      {% for item in restaurant.item_set.all %}
-      <li>{{ item.name }} - ${{ item.price }}</li>
-      {% endfor %}
-    </ul>
-  </li>
-  {% endfor %}
+{% extends './layout/base.html' %} {% block content %}
+<h2 class="mt-5">Restaurant Detail</h2>
+<ul class="mt-5">
+  <h2>{{ restaurant.name }}</h2>
+  <h3>{{ restaurant.description }}</h3>
+  <h4>
+    Address: <span class="text-capitalize"> {{ restaurant.address }}</span>
+  </h4>
+  <ul class="mt-4">
+    <h4>Menu</h4>
+    {% for item in restaurant.item_set.all %}
+    <li class="text-danger">{{ item.name }} - ${{ item.price }}</li>
+    {% endfor %}
+  </ul>
 </ul>
 {% endblock %}
