@@ -15,7 +15,6 @@ class CustomUser(AbstractUser):
 
 
 class CartItem(models.Model):
-    # For non-authenticated users
     session_key = models.CharField(max_length=50, blank=True, null=True)
     user = models.ForeignKey(CustomUser, on_delete=models.CASCADE,
                              blank=True, null=True)  # For authenticated users

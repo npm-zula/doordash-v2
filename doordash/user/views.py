@@ -76,6 +76,10 @@ def add_to_cart(request, item_id):
 
 
 def cart(request):
-    cart_items = CartItem.objects.filter(user=request.user)
+    if request.user.is_authenticated:
+        cart_items = CartItem.objects.filter(user=request.user)
+    else:
+        session_key = request.session.session_key
+        cart_items = CartItem.objects.filter(session_key=session_key)
 
     return render(request, 'doordash_app/cart.html', {'cart_items': cart_items})

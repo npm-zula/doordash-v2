@@ -5,9 +5,12 @@ from django.contrib.auth.decorators import login_required
 from user.models import CustomUser, CartItem
 
 
-@login_required
 def place_order(request):
     user = request.user
+
+    if not user.is_authenticated:
+        return redirect('users:login')
+
     cart_items = CartItem.objects.filter(user=user)
 
     order = Order.objects.create(CustomUser=user, total_price=0)
