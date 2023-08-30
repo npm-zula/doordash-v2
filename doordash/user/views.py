@@ -1,4 +1,4 @@
-from typing import Any, Dict, Optional
+from .utils import get_or_create_cart_item
 from django.shortcuts import render
 
 # Create your views here.
@@ -10,8 +10,7 @@ from .forms import RegistrationForm, LoginForm
 from .models import CartItem
 from restaurant.models import Item
 
-from django.contrib.auth.decorators import login_required
-from django.contrib.sessions.models import Session
+from .utils import get_or_create_cart_item
 
 
 def signup(request):
@@ -48,22 +47,15 @@ def user_logout(request):
     return redirect('home')
 
 
-# cart views
+def cart(request):
+    cart_items = CartItem.objects.filter(user=request.user)
+
+    return render(request, 'doordash_app/cart.html', {'cart_items': cart_items})
+
+
 def add_to_cart(request, item_id):
     item = Item.objects.get(pk=item_id)
-
-    if request.user.is_authenticated:
-        # Authenticated user
-        cart_item, created = CartItem.objects.get_or_create(
-            user=request.user, item=item)
-    else:
-        # Non-authenticated user
-        session_key = request.session.session_key
-        if not session_key:
-            request.session.create()
-            session_key = request.session.session_key
-        cart_item, created = CartItem.objects.get_or_create(
-            session_key=session_key, item=item)
+    cart_item, created = get_or_create_cart_item(request.user, item, request)
 
     if not created:
         cart_item.quantity += 1
@@ -71,11 +63,3 @@ def add_to_cart(request, item_id):
         cart_item.save()
 
     return redirect('home')
-
-# create a view to display the cart
-
-
-def cart(request):
-    cart_items = CartItem.objects.filter(user=request.user)
-
-    return render(request, 'doordash_app/cart.html', {'cart_items': cart_items})
