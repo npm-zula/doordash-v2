@@ -8,6 +8,8 @@
     {{ Item.item.name }} - {{ Item.item.description }}
     <span class="m-lg-4">Quantity - {{Item.quantity}}</span>
     <span class="m-lg-4">Price - {{Item.price}} </span>
+    <p>{{Item.session_key}}</p>
+    <p>{{Item.user}}</p>
   </li>
   {% endfor %}
 

@@ -8,10 +8,13 @@ from user.models import CustomUser, CartItem
 def place_order(request):
     user = request.user
 
-    if not user.is_authenticated:
-        return redirect('users:login')
+    cart_items = CartItem.objects.filter(
+        session_key=request.session.session_key)
 
-    cart_items = CartItem.objects.filter(user=user)
+    if not user.is_authenticated:
+        # cart_items.delete()
+        # return redirect('home')
+        return redirect('users:login')
 
     order = Order.objects.create(CustomUser=user, total_price=0)
     for cart_item in cart_items:
