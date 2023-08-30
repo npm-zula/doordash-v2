@@ -26,6 +26,7 @@
 
             <!-- show a cart link if user is not a superuser -->
             {% if not user.is_superuser %}
+
             <li class="nav-item">
               <a class="nav-link" href="{% url 'users:cart' %}">Cart</a>
               {% endif %} {% else %}
