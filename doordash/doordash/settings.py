@@ -41,6 +41,7 @@ INSTALLED_APPS = [
     'user',
     'doordash_app',
     'restaurant',
+    'order',
     'crispy_forms',
 
 ]
@@ -136,3 +137,5 @@ STATIC_URL = '/static/'
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 AUTH_USER_MODEL = 'user.CustomUser'
+
+SESSION_ENGINE = 'doordash.session_backend'

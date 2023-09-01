@@ -8,4 +8,5 @@ urlpatterns = [
     path('', include('doordash_app.urls')),
     path('users/', include('user.urls')),
     path('restaurant/', include('restaurant.urls', namespace="restaurant")),
+    path('order/', include('order.urls', namespace="order")),
 ]

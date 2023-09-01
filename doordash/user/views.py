@@ -34,6 +34,9 @@ def user_login(request):
             user = authenticate(username=username, password=password)
             if user is not None:
                 login(request, user)
+                CartItem.objects.filter(
+                    session_key=request.session.session_key).update(user=user)
+
                 return redirect('home')
             else:
                 form.add_error(None, 'Invalid email or password')
@@ -61,5 +64,17 @@ def add_to_cart(request, item_id):
         cart_item.quantity += 1
         cart_item.price = cart_item.item.price * cart_item.quantity
         cart_item.save()
+    else:
+        cart_item.price = cart_item.item.price
+        cart_item.save()
 
     return redirect('home')
+
+# create a view to display the cart
+
+
+def cart(request):
+    session_key = request.session.session_key
+    cart_items = CartItem.objects.filter(session_key=session_key)
+
+    return render(request, 'doordash_app/cart.html', {'cart_items': cart_items})

@@ -23,10 +23,9 @@
             <li class="nav-item">
               <a class="nav-link" href="{% url 'users:logout' %}">Logout</a>
             </li>
-            {% endif %}
+
             <!-- show a cart link if user is not a superuser -->
             {% if not user.is_superuser %}
-
             <li class="nav-item">
               <a class="nav-link" href="{% url 'users:cart' %}">Cart</a>
             </li>
@@ -34,7 +33,7 @@
               <a class="nav-link" href="{% url 'order:view_order' %}">Order</a>
             </li>
 
-            {% else %}
+            {% endif %} {% else %}
 
             <li class="nav-item">
               <a class="nav-link" href="{% url 'users:login' %}">Login</a>
