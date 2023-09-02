@@ -9,7 +9,14 @@
   <ul class="mt-4">
     <h4>Menu</h4>
     {% for item in restaurant.item_set.all %}
-    <li class="text-danger">{{ item.name }} - ${{ item.price }}</li>
+    <li class="text-danger">
+      {{ item.name }} - ${{ item.price }}
+      <a
+        class="text-success m-lg-2"
+        href="{% url 'users:add_to_cart' item.id %}"
+        >Add to Cart</a
+      >
+    </li>
     {% endfor %}
   </ul>
 </ul>

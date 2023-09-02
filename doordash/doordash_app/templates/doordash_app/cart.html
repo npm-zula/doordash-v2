@@ -8,14 +8,27 @@
     {{ Item.item.name }} - {{ Item.item.description }}
     <span class="m-lg-4">Quantity - {{Item.quantity}}</span>
     <span class="m-lg-4">Price - {{Item.price}} </span>
-    <p>{{Item.session_key}}</p>
-    <p>{{Item.user}}</p>
+    <a
+      href="{% url 'users:increase_amount' Item.item.id %}"
+      class="btn btn-success"
+      >+</a
+    >
+    <a
+      href="{% url 'users:remove_from_cart' Item.item.id %}"
+      class="btn btn-danger"
+      >Remove</a
+    >
   </li>
   {% endfor %}
 
-  <a href="{% url 'order:place_order' %}" class="btn btn-dark mt-5"
-    >Place Order</a
-  >
+  <div class="flex">
+    <a href="{% url 'order:place_order' %}" class="btn btn-dark mt-5"
+      >Place Order</a
+    >
+    <a href="{% url 'users:clear_cart' %}" class="btn btn-danger mt-5"
+      >Clear Cart</a
+    >
+  </div>
 </div>
 
 {% endblock content %}

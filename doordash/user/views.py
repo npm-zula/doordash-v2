@@ -74,7 +74,62 @@ def add_to_cart(request, item_id):
 
 
 def cart(request):
-    session_key = request.session.session_key
-    cart_items = CartItem.objects.filter(session_key=session_key)
+    user = request.user
+
+    if user.is_authenticated:
+        cart_items = CartItem.objects.filter(user=request.user)
+    else:
+        session_key = request.session.session_key
+        cart_items = CartItem.objects.filter(session_key=session_key)
 
     return render(request, 'doordash_app/cart.html', {'cart_items': cart_items})
+
+# remove item from cart
+
+
+def remove_from_cart(request, item_id):
+    item = Item.objects.get(pk=item_id)
+    user = request.user
+
+    if user.is_authenticated:
+        cart_item = CartItem.objects.get(
+            item=item, user=user)
+    else:
+        cart_item = CartItem.objects.get(
+            item=item, session_key=request.session.session_key)
+
+    cart_item.delete()
+
+    return redirect('users:cart')
+
+
+def increase_amount(request, item_id):
+    user = request.user
+    item = Item.objects.get(pk=item_id)
+
+    if user.is_authenticated:
+        cart_item = CartItem.objects.get(
+            item=item, user=user)
+    else:
+        cart_item = CartItem.objects.get(
+            item=item, session_key=request.session.session_key)
+
+    cart_item.quantity += 1
+    cart_item.price = cart_item.item.price * cart_item.quantity
+    cart_item.save()
+
+    return redirect('users:cart')
+
+
+def clear_cart(request):
+    user = request.user
+
+    if user.is_authenticated:
+        cart_items = CartItem.objects.filter(user=user)
+    else:
+        session_key = request.session.session_key
+        cart_items = CartItem.objects.filter(session_key=session_key)
+
+    cart_items.delete()
+
+    return redirect('users:cart')
