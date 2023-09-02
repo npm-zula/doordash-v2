@@ -6,6 +6,7 @@ from user import views as v
 
 urlpatterns = [
     path('', include('doordash_app.urls')),
+    path('admin/', admin.site.urls),
     path('users/', include('user.urls')),
     path('restaurant/', include('restaurant.urls', namespace="restaurant")),
     path('order/', include('order.urls', namespace="order")),
