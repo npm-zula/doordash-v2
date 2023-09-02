@@ -29,10 +29,37 @@ def place_order(request):
     return redirect('home')
 
 
-@login_required
 def view_order(request):
     user = request.user
-
     orders = Order.objects.filter(CustomUser=user)
+    # get all order items for each order
+    for order in orders:
+        order_items = OrderItem.objects.filter(order_id=order.id)
+        order.order_items = order_items
 
     return render(request, 'order/order.html', {'orders': orders})
+
+
+def order_details(request, order_id):
+    order = Order.objects.get(id=order_id)
+    order_items = OrderItem.objects.filter(order_id=order_id)
+
+    # get item names for each order item
+    for order_item in order_items:
+        item = Item.objects.get(id=order_item.item_id)
+        order_item.item_name = item.name
+
+    return render(request, 'order/order_details.html', {'order': order, 'order_items': order_items})
+
+
+def clear_orders(request):
+    user = request.user
+    orders = Order.objects.filter(CustomUser=user)
+
+    for order in orders:
+        order_items = OrderItem.objects.filter(order_id=order.id)
+        order_items.delete()
+
+    orders.delete()
+
+    return redirect('home')
