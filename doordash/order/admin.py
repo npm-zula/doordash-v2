@@ -6,7 +6,7 @@ from .models import Order, OrderItem
 @admin.register(Order)
 class OrderAdmin(admin.ModelAdmin):
 
-    list_display = ('id', 'CustomUser', 'created_at', 'total_price', 'status')
-    list_filter = ('status',)
+    # list_display = ('id', 'CustomUser', 'created_at', 'total_price', 'status')
+    # list_filter = ('status',)
 
     readonly_fields = ('id', 'CustomUser', 'created_at', 'total_price')
