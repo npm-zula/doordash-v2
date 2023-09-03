@@ -32,6 +32,7 @@
       <a class="text-success" href="{% url 'users:add_to_cart' Item.id %}"
         >Add to Cart</a
       >
+      <img src="{{Item.image.url}}" alt="{{Item.name}}" class="w-25 h-25" />
     </li>
     {% endfor %}
   </ul>
