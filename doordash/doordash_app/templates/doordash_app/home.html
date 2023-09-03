@@ -22,7 +22,9 @@
     {% endfor %}
   </ul>
 
-  <h2 class="mt-5">Featured Items</h2>
+  <a class="mt-5 text-body h2 link-underline-info" href="{% url 'all_items' %}"
+    >Featured Items</a
+  >
   <ul>
     {% for Item in featured_Items %}
     <li class="flex">
