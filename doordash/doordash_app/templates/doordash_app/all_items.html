@@ -1,0 +1,21 @@
+{% extends "./layout/base.html" %} {% block content %}
+
+<div>
+  <h2>ALL ITEMS</h2>
+
+  <div class="d-flex flex-lg-wrap">
+    {% for Item in all_items %}
+    <div class="">
+      <a class="nav-link" href="">
+        {{ Item.name }} - {{ Item.description }} - Rs.{{ Item.price }}
+      </a>
+      <a class="text-success" href="{% url 'users:add_to_cart' Item.id %}"
+        >Add to Cart</a
+      >
+      <img src="{{Item.image.url}}" alt="{{Item.name}}" class="w-25 h-25" />
+    </div>
+    {% endfor %}
+  </div>
+</div>
+
+{% endblock content %}

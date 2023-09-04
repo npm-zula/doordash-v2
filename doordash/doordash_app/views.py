@@ -9,3 +9,9 @@ def home(request):
     featured_restaurants = Restaurant.objects.all()[:5]
     featured_items = Item.objects.all()[:5]
     return render(request, 'doordash_app/home.html', {'featured_restaurants': featured_restaurants, 'featured_Items': featured_items})
+
+
+# all items
+def all_items(request):
+    all_items = Item.objects.all()
+    return render(request, 'doordash_app/all_items.html', {'all_items': all_items})
