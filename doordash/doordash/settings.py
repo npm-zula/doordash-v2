@@ -25,9 +25,9 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = 'django-insecure-y9ui-v4&e(tl!bpy74qk-+puc=h@waq(8n0m)47zr6^2w0s##6'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['localhost', '127.0.0.1']
 
 
 # Application definition
@@ -158,3 +158,5 @@ MEDIA_ROOT = os.path.join(BASE_DIR, 'media/')
 
 
 load_dotenv()
+
+STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')

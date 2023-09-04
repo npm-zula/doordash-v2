@@ -1,13 +1,16 @@
 from django.db import models
 
 from django.contrib.auth.models import AbstractUser, AbstractBaseUser, PermissionsMixin, BaseUserManager
+from django.core.validators import MinLengthValidator
+
 
 from restaurant.models import Item
 
 
 class CustomUser(AbstractUser):
     email = models.EmailField(unique=True)
-    display_name = models.CharField(max_length=32, default='Anonymous')
+    display_name = models.CharField(
+        max_length=32, default='Anonymous', validators=[MinLengthValidator(2)])
     full_name = models.CharField(max_length=100)
 
     def __str__(self):
