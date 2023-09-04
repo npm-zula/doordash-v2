@@ -4,6 +4,13 @@ from user.models import CustomUser
 
 
 class Order(models.Model):
+
+    status_choices = (
+        ('Pending', 'Pending'),
+        ('Delivered', 'Delivered'),
+        ('Cancelled', 'Cancelled'),
+    )
+
     CustomUser = models.ForeignKey(CustomUser, on_delete=models.CASCADE)
     created_at = models.DateTimeField(auto_now_add=True)
     total_price = models.DecimalField(
