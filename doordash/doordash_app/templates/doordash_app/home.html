@@ -1,13 +1,11 @@
 {% extends "./layout/base.html" %} {% block content %}
 
 <div class="mt-5">
-  <h1>HOME PAGE DOORDASH APP</h1>
+  <h1>HOME PAGE of DOORDASH APP</h1>
   {% if user.is_authenticated %}
   <h1>Hi {{ user.username }}</h1>
   {% else %}
   <h1>Hi Guest</h1>
-  <a class="btn btn-primary" href="{% url 'users:login' %}">Login</a>
-  <a class="btn btn-primary" href="{% url 'users:signup' %}">Signup</a>
   {% endif %}
 
   <h2 class="mt-5">Featured Restaurants</h2>
