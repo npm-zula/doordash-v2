@@ -7,7 +7,7 @@ from restaurant.models import Item
 
 class CustomUser(AbstractUser):
     email = models.EmailField(unique=True)
-    display_name = models.CharField(max_length=32)
+    display_name = models.CharField(max_length=32, default='Anonymous')
     full_name = models.CharField(max_length=100)
 
     def __str__(self):
