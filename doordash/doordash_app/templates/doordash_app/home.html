@@ -1,0 +1,42 @@
+{% extends "./layout/base.html" %} {% block content %}
+
+<div class="mt-5">
+  <h1>HOME PAGE of DOORDASH APP</h1>
+  {% if user.is_authenticated %}
+  <h1>Hi {{ user.username }}</h1>
+  {% else %}
+  <h1>Hi Guest</h1>
+  {% endif %}
+
+  <h2 class="mt-5">Featured Restaurants</h2>
+  <ul>
+    {% for restaurant in featured_restaurants %}
+    <li>
+      <a
+        class="nav-link"
+        href="{% url 'restaurant:restaurant_detail' restaurant.id %}"
+      >
+        {{ restaurant.name }} - {{ restaurant.description }}
+      </a>
+    </li>
+    {% endfor %}
+  </ul>
+
+  <a class="mt-5 text-body h2 link-underline-info" href="{% url 'all_items' %}"
+    >Featured Items</a
+  >
+  <ul>
+    {% for Item in featured_Items %}
+    <li class="flex">
+      <a class="nav-link" href="">
+        {{ Item.name }} - {{ Item.description }} - Rs.{{ Item.price }}
+      </a>
+      <a class="text-success" href="{% url 'users:add_to_cart' Item.id %}"
+        >Add to Cart</a
+      >
+      <img src="{{Item.image.url}}" alt="{{Item.name}}" class="w-25 h-25" />
+    </li>
+    {% endfor %}
+  </ul>
+</div>
+{% endblock content %}

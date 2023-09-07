@@ -1,0 +1,9 @@
+{% extends "./layout/base.html" %} {% block content %}
+<h1>Login</h1>
+<form method="post">
+  {% csrf_token %} {{ form.as_p }}
+
+  <button type="submit">Login</button>
+</form>
+<a class="nav-link" href="{% url 'password_reset' %}">Forgot Password?</a>
+{% endblock content %}

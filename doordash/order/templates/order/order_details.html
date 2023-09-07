@@ -1,0 +1,15 @@
+{% extends "./layout/base.html" %} {% block content %}
+<h3 class="mt-5">Order Details</h3>
+
+<ul>
+  {% for item in order_items %}
+  <li>
+    <p>{{item.item_name}} ({{item.quantity}})</p>
+    <p>Price: {{item.subtotal_price}}</p>
+  </li>
+  {% endfor %}
+</ul>
+<h5>ORDER STATUS: {{order.status}}</h5>
+<h4>TOTAL PRICE: {{order.total_price}}</h4>
+
+{% endblock content %}
