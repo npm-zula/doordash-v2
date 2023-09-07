@@ -15,3 +15,8 @@ def home(request):
 def all_items(request):
     all_items = Item.objects.all()
     return render(request, 'doordash_app/all_items.html', {'all_items': all_items})
+
+
+# 404 page
+def error_404(request, exception):
+    return render(request, 'doordash_app/error_404.html', status=404)
